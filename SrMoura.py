@@ -20,3 +20,5 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 
 def repo():
 	return "[srmoura]\nServer = http://srmoura.com.br/repo/arch/\$arch\nSigLevel = PackageRequired\n"
+def repoCK():
+	return "[repo-ck]\nServer = http://repo-ck.com/\$arch"

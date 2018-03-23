@@ -32,4 +32,15 @@ Q3=input('Deseja instalar o qtpacman[s,n]?: ')
 if Q3=='s':
 	pacman.netInstallY('qtpacman')
 
+Qck=input('Deseja instalar o kernel-ck[s,n]?: ')
+if Qck=='s':
+	print('Configurando repositŕio, chaves e instalando o linux-ck')
+	os.system('gcc -c -Q -march=native --help=target | grep march')
+	os.system('echo "{}" >>/etc/pacman.conf'.format(SrMoura.repoCK()))
+	os.system('pacman-key -r 5EE46C4C && pacman-key --sign-key 5EE46C4C')
+	pacman.populate()
+	pacman.updateDB()
+	ckv=input('Digite o nome printado: ')
+	pacman.netInstallY('linux-ck-{} linux-ck-{}-headers'.format(ckv))
+
 print ('Fim das configurações')
