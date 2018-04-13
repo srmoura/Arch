@@ -1,30 +1,72 @@
 #!/usr/bin/env python
-#Pacote auxiliar ao pacman
-import os
+# Pacote auxiliar ao pacman
+from os import system
+
+
 def netInstall(pkg):
-    os.system('pacman -S {}'.format(pkg))
+    system('pacman -S {}'.format(pkg))
+
+
 def netInstallY(pkg):
-    os.system('pacman -S {} --noconfirm'.format(pkg))
+    system('pacman -S {} --noconfirm'.format(pkg))
+
+
 def locInstall(pkg):
-    os.system('pacman -U {}'.format(pkg))
+    system('pacman -U {}'.format(pkg))
+
+
 def updateDB():
-    os.system('pacman -Sy')
+    system('pacman -Sy')
+
+
 def upgrade():
-    os.system('pacman -Syu')
+    system('pacman -Syu')
+
+
 def populate():
-    os.system('pacman-key --populate')
+    system('pacman-key --populate')
+
+
 def rmD(pkg):
-    "Remove os pacotes e suas dependencias"
-    os.system('pacman -Rs {} --noconfirm'.format(pkg))
+    """Remove os pacotes e suas dependencias"""
+    system('pacman -Rs {} --noconfirm'.format(pkg))
+
+
 def rm(pkg):
-    "Remove os pacotes deixando as dependencias"
-    os.system('pacman -R {} --noconfirm'.format(pkg))
+    """Remove os pacotes deixando as dependencias"""
+    system('pacman -R {} --noconfirm'.format(pkg))
+
+
 def autoremove():
-    "Remove os pacotes não mais usados"
-    os.system('pacman -R $(pacman -Qdtq)')
+    """Remove os pacotes não mais usados"""
+    system('pacman -R $(pacman -Qdtq)')
+
+
 def listautoremove():
-    "Lista os pacotes não mais usados"
-    os.system('pacman -Qdt')
+    """Lista os pacotes não mais usados"""
+    system('pacman -Qdt')
+
+
 def rmDn(pkg):
-    "Pula as dependencias e Remove só o pacote principal"
-    os.system('pacman -Rdd {} --noconfirm'.format(pkg))
+    """Pula as dependencias e Remove só o pacote principal"""
+    system('pacman -Rdd {} --noconfirm'.format(pkg))
+
+
+def listRepo(repo):
+    """Lista os pacotes do repositório"""
+    system('pacman -Sl {}'.format(repo))
+
+
+def info(pkg):
+    """Imprime as informações do pacote"""
+    system('pacman -Si {}'.format(pkg))
+
+
+def rmU():
+    """Remove os pacotes que não são mais necessários"""
+    system('pacman -Rns $(pacman -Qtdq)')
+
+
+def down(pkg):
+    """Faz download dos pacotes sem instalar-los"""
+    system('pacman -Sw {}',format(pkg))
