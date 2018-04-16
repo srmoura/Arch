@@ -70,3 +70,8 @@ def rmU():
 def down(pkg):
     """Faz download dos pacotes sem instalar-los"""
     system('pacman -Sw {}',format(pkg))
+
+
+def optimize():
+    """Melhora a performace do pacman"""
+    system('pacman-optimize')
