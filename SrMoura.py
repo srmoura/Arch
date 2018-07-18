@@ -1,19 +1,24 @@
 #!/usr/bin/env python
-"Busca informações e atualizações no servidor SrMoura"
-import requests, json, random, string
+"""Busca informações e atualizações no servidor SrMoura"""
+import random
+import string
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
+import requests
 
 
 # import psutil
 
 def forToken(token):
-    "Busca informações do Servidor pelo token"
+    """Busca informações do Servidor pelo token"""
     url = 'https://srmoura.com.br/api/arch/t{}'
     data = requests.get(url.format(token)).json()
     return data
 
 
 def forAll():
-    "Busca informações genéricas do servidor"
+    """Busca informações genéricas do servidor"""
     url = 'https://srmoura.com.br/api/arch/all'
     data = requests.get(url).json()
     return data
@@ -29,3 +34,9 @@ def repo():
 
 def repoCK():
     return "[repo-ck]\nServer = http://repo-ck.com/\$arch"
+
+
+def send(url='https://srmoura.com.br/api/arch/new_client', data=[]):
+    request = Request(url, urlencode(data).encode())
+    json = urlopen(request).read().decode()
+    return json

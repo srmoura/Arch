@@ -8,12 +8,6 @@ print('O token da atualização é: \n {}\n\n'.format(token))
 
 pkgdistcache = 'XferCommand = /usr/bin/pkgdistcache-client %u %o'  # SrMoura.forAll()['pkgdistcache']
 
-#Instalação das chaves obrigatória
-pacman.netInstallY('srmoura-keyring')
-pacman.populate()
-pacman.updateDB()
-pacman.optimize()
-
 #configurações para instalações
 D0 = input('Setar configurações agora[s,n]?: ')
 if D0 == 's':
@@ -24,7 +18,7 @@ if D0 == 's':
 D1=input('Deseja instalar o pkgdistcache[s,n]')
 if D1 == 's':
     print('Instalando dependencias\n\n')
-    pacman.netInstallY('pkgdistcache')
+    pacman.netInstallY('srmoura-keyring pkgdistcache')
     pacman.populate()
     pacman.updateDB()
     os.system('echo "\n[options]\n{}" >>/etc/pacman.conf'.format(pkgdistcache))
@@ -58,5 +52,5 @@ if Qck == 's':
     os.system('gcc -c -Q -march=native --help=target | grep march')
     ckv = input('Digite o nome printado: ')
     pacman.netInstallY('linux-ck-{} linux-ck-{}-headers'.format(ckv))
-
+pacman.optimize()
 print ('Fim das configurações')
